@@ -12,8 +12,7 @@ module.exports = NodeHelper.create({
         this.tadoClient = new TadoClient();
     },
 
-    getData: async function() {
-        let self = this;
+    getData: async function(self) {
 
         self.length_zones = undefined;
 
@@ -94,14 +93,14 @@ module.exports = NodeHelper.create({
 
             this.tadoMe = {};
             this.tadoHomes = [];
-            this.getData();
+            this.getData(this);
 
             let self = this;
-            setInterval(function () {
+            setInterval( ()=> {
                 self.tadoMe = {};
                 self.tadoHomes = [];
-                self.getData();
-            }, this.config.updateInterval);
+                self.getData(self);
+            }, this.config.updateInterval,this);
         }
     },
 
